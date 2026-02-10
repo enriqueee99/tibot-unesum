@@ -1,10 +1,30 @@
 [
   {
-    "question": "¿Cuál es la duración de la carrera?",
-    "answer": "La carrera de Tecnologías de la Información tiene una duración de 8 semestres."
+    "pregunta": "malla",
+    "respuesta": "Puedes consultar la malla curricular completa de la carrera de TI en el siguiente enlace: [Link a la malla]. En ella verás materias como Programación, Redes y Bases de Datos."
   },
   {
-    "question": "¿La carrera es presencial?",
-    "answer": "La modalidad de la carrera es presencial."
+    "pregunta": "biblioteca",
+    "respuesta": "La biblioteca física atiende de lunes a viernes en horario de 08:00 a 18:00. Ofrece préstamo de libros, uso de computadoras y acceso a Urkund para revisión de tesis."
+  },
+  {
+    "pregunta": "beca",
+    "respuesta": "Para solicitar una beca, debes acudir a Bienestar Estudiantil. Existen becas por mérito académico, situación económica y discapacidad. ¡Asegúrate de revisar las fechas de convocatoria!"
+  },
+  {
+    "pregunta": "practicas",
+    "respuesta": "Las prácticas pre-profesionales y vinculación se realizan en instituciones con convenio. Si deseas aplicar a un lugar sin convenio, debes solicitar la gestión en la secretaría de la carrera."
+  },
+  {
+    "pregunta": "matricula",
+    "respuesta": "Los requisitos de ingreso y fechas de matrícula para el próximo semestre se publican en la página oficial de Admisión. Recuerda verificar los procesos de homologación si vienes de otra carrera."
+  },
+  {
+    "pregunta": "horario",
+    "respuesta": "Para conocer tu horario de clases y las materias que verás este semestre, ingresa al sistema académico con tu usuario de estudiante."
+  },
+  {
+    "pregunta": "posgrado",
+    "respuesta": "La UNESUM ofrece programas de posgrado con diversos costos y requisitos. Puedes encontrar todos los detalles y el enlace de inscripción en la sección de Posgrado de la web institucional."
   }
 ]

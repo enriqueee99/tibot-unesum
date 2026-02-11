@@ -7,26 +7,46 @@ const ChatbotWindow = () => {
   const [input, setInput] = useState("");
 
   // 1. Lógica de Respuesta (Separada para facilitar la lectura de tu tesis)
-  const processResponse = (query, currentMessages) => {
-    setTimeout(() => {
-      let botReply = "";
-
-      if (!isOnline) {
-        // MODO OFFLINE: Búsqueda de coincidencia en el JSON local
+  const processResponse = async (query, currentMessages) => {
+    // 1. Lógica Offline (Resiliencia)
+    if (!isOnline) {
+      setTimeout(() => {
         const found = faqs.find((f) =>
           query.includes(f.pregunta.toLowerCase()),
         );
-        botReply = found
+        const botReply = found
           ? found.respuesta
-          : "Lo siento, no tengo esa información registrada localmente. Intenta con palabras clave como 'malla' o 'requisitos'.";
-      } else {
-        // MODO ONLINE: Respuesta provisional hasta conectar la API de Groq
-        botReply =
-          "Recibido. Estoy procesando tu consulta con inteligencia artificial a través de Groq.";
-      }
+          : "Sin conexión. No tengo información local para eso. Intenta con 'malla' o 'becas'.";
+        setMessages([...currentMessages, { text: botReply, sender: "bot" }]);
+      }, 600);
+      return;
+    }
+
+    // 2. Lógica Online (IA con Groq vía Netlify)
+    try {
+      // Llamamos a la función serverless de Netlify que creaste
+      const response = await fetch("/.netlify/functions/chat", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ message: query }),
+      });
+
+      if (!response.ok) throw new Error("Error en la respuesta del servidor");
+
+      const data = await response.json();
+      const botReply = data.reply;
 
       setMessages([...currentMessages, { text: botReply, sender: "bot" }]);
-    }, 600);
+    } catch (error) {
+      console.error("Error en Chatbot:", error);
+      setMessages([
+        ...currentMessages,
+        {
+          text: "Lo siento, tuve un problema al conectar con mi cerebro de IA. ¿Deseas intentar de nuevo?",
+          sender: "bot",
+        },
+      ]);
+    }
   };
 
   // 2. Manejador del Formulario (Ahora el input y el botón ya funcionan)
